@@ -42,18 +42,11 @@ gamma = int(gamma_rate)
 epsilon = int(epsilon_rate)
 
 
-def binaryToDecimal(binary):
-    binary1 = binary
-    decimal, i, n = 0, 0, 0
-    while (binary != 0):
-        dec = binary % 10
-        decimal = decimal + dec * pow(2, i)
-        binary = binary // 10
-        i += 1
-    return decimal
+def binary_to_decimal(binary):
+    return int(str(binary), 2)
 
 
-print(f'Part One: {binaryToDecimal(gamma) * binaryToDecimal(epsilon)}')
+print(f'Part One: {binary_to_decimal(gamma) * binary_to_decimal(epsilon)}')
 
 # part two
 
@@ -97,4 +90,4 @@ co2 = filter_datas('c', datas)
 print(f'Oxygen: {oxygen}')
 print(f'CO2: {co2}')
 
-print(f'Part Two: {binaryToDecimal(int(oxygen)) * binaryToDecimal(int(co2))}')
+print(f'Part Two: {binary_to_decimal(int(oxygen)) * binary_to_decimal(int(co2))}')
