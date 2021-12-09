@@ -9,8 +9,8 @@ measurements = [int(m) for m in measurements]
 part_one_result = 0
 prev_m = measurements[0]
 
-for m in measurements:
-    if m > prev_m and prev_m != None:
+for m in measurements[1:]:
+    if m > prev_m
         part_one_result += 1
     prev_m = m
 print(part_one_result)
