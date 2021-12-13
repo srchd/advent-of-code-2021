@@ -70,6 +70,13 @@ print(f'Part One: {result}')
 
 # part two
 
+np_board = np.array(final_boards)
+
+numberOfBoards = np_board.shape[0]
+
+boardsLeft = [i for i in range(100)]
+
+lastBoard = -1
 result = 0
 winner_board = 0
 for number in numbers:
@@ -83,12 +90,30 @@ for number in numbers:
     possible_rows = np.where(rows_per_board == 0)
     possible_cols = np.where(columns_per_board == 0)
     if len(possible_rows[0]) != 0 and len(possible_rows[1]) != 0:
-        winner_board = possible_rows[0][0]
-        result = number
-        break
+        if boardsLeft.count(-1) == (numberOfBoards - 1):
+            result = number
+            break
+        else:
+            for b in possible_rows[0]:
+                boardsLeft[b] = -1
+
     elif len(possible_cols[0]) != 0 and len(possible_cols[1]) != 0:
-        winner_board = possible_cols[0][0]
-        result = number
-        break
+        if boardsLeft.count(-1) == (numberOfBoards - 1):
+            break
+        else:
+            for b in possible_cols[0]:
+                boardsLeft[b] = -1
     else:
         pass
+
+print(boardsLeft)
+
+for b in boardsLeft:
+    if b != -1:
+        lastBoard = b
+
+print(np_board[b])
+
+result *= sum(sum(np_board[lastBoard]))
+
+print(f'Part Two:{result}')
